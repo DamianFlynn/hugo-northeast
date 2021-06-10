@@ -1,0 +1,18 @@
+<!-- accordion-->                            
+<div class="accordion mar-top">
+  <a class="toggle act-accordion" href="#">{{ .Get 0 }}<span></span></a>
+  {{ with .Get 1 }}
+  <div class="accordion-inner visible">
+      <p>{{ . }}</p>
+  </div>
+  {{end}}
+                                              
+  
+  <a class="toggle " href="#">  Details option 2   <span></span></a>
+  <div class="accordion-inner ">
+      <p>More work!</p>
+  </div>
+  
+                        
+</div>
+<!-- accordion end --> 

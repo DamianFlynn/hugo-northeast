@@ -1,0 +1,37 @@
+{{- $pc := .Page.Site.Config.Privacy.Twitter -}}
+{{- $sc := .Page.Site.Config.Services.Twitter -}}
+{{- if not $pc.Disable -}}
+{{- $id := .Get 0 -}}
+{{- $json := getJSON "https://api.twitter.com/1/statuses/oembed.json?id=" $id "&omit_script=true" -}}
+{{- if not $sc.DisableInlineCSS -}}
+{{ template "__h_simple_twitter_css" $ }}
+{{- end -}}
+{{ $json.html | safeHTML }}
+{{- end -}}
+
+{{ define "__h_simple_twitter_css" }}
+{{ if not (.Page.Scratch.Get "__h_simple_twitter_css") }}
+{{/* Only include once */}}
+{{  .Page.Scratch.Set "__h_simple_twitter_css" true }}
+<div class="note warning" id="twitter{{ .Get 0 }}"><h5>Twitter capabilities</h5><p>Without you consent, the capabilities have been limited. Please consider approving your consent for a rich experience</p><button class="btn  color-btn flat-btn" data-toggle="modal" data-target="#consentModal">Show consent dialog</button></div>
+<script>
+(function () {
+  if (window.devConsent.consent == true) {
+    var twitterWidget = document.createElement("script");
+    twitterWidget.setAttribute("async", {});
+    twitterWidget.setAttribute("src", "https://platform.twitter.com/widgets.js");
+    twitterWidget.setAttribute("charset", "utf-8");
+    document.getElementsByTagName("body")[0].appendChild(twitterWidget);
+  }
+  else {
+    var newStyle = document.createElement("link");
+    newStyle.setAttribute("rel", "stylesheet");
+    newStyle.setAttribute("type", "text/css");
+    newStyle.setAttribute("href", "{{ "/css/twitter.css" | urlize | relURL }}");
+    document.getElementsByTagName("head")[0].appendChild(newStyle);
+    document.getElementById("twitter{{ .Get 0 }}").classList.remove("d-none");
+  }
+})();
+</script>
+{{ end }}
+{{ end }}

@@ -1,0 +1,12 @@
+<div class="team-box" style="width: -webkit-fill-available;">
+  <div class="team-photo">
+    <div class="overlay"></div>
+    <a target="_blank"  href="https://www.amazon.co.uk/gp/product/{{ .Get "asin" }}/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN={{ .Get "asin" }}&tag=damianflynn-21">{{ .Get "product" }}</a>
+    <img src="//ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=GB&ASIN={{ .Get "asin" }}&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=damianflynn-21" class="respimg" alt="{{ .Get "product" }}">
+  </div>
+  <div class="team-info"><a target="_blank"  href="https://www.amazon.co.uk/gp/product/{{ .Get "asin" }}/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN={{ .Get "asin" }}&tag=damianflynn-21">
+    <h3>{{ .Get "product" }}</h3>
+    <h4>{{ .Get "model" }}</h4>
+    <p>{{ .Get "description"}}</p></a>
+  </div>
+</div>
